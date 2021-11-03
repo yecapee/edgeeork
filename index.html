@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script
+      src="https://kit.fontawesome.com/f267a6d408.js"
+      crossorigin="anonymous"
+    ></script>
+    <title id="title">{{text}}</title>
+    <style>
+      h1 {
+        font-size: 4rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="edgework" v-on:click="moreClick" role="button">{{text}}</h1>
+      <h5>
+        <a href="https://www.facebook.com/theedgeman/" class="text-reset"
+          ><i class="fab fa-facebook"></i
+        ></a>
+        <a href="https://www.instagram.com/edge_work/" class="text-reset"
+          ><i class="fab fa-instagram"></i
+        ></a>
+      </h5>
+
+      <h4 class="mt-5">報名</h4>
+      <hr />
+      <div class="row" id="sign-up">
+        <div class="col-6 col-sm-4 col-md-3" v-for="item in list">
+          <a :href="item.link">
+            <figure class="figure">
+              <img
+                :src="item.img"
+                class="figure-img img-fluid rounded"
+                alt="..."
+              />
+              <figcaption class="figure-caption text-end">
+                {{item.text}}
+              </figcaption>
+            </figure>
+          </a>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-6 col-sm-4 col-md-3 bg-warning text-white" id="recruit">
+          <h5 class="mt-2">徵人</h5>
+          <hr />
+          <div class="col-12" v-for="item in list">
+            <a :href="item.link">
+              <figure class="figure">
+                <img
+                  :src="item.img"
+                  class="figure-img img-fluid rounded"
+                  alt="..."
+                />
+                <figcaption class="figure-caption text-end">
+                  {{item.text}}
+                </figcaption>
+              </figure>
+            </a>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 bg-info text-white" id="buy">
+          <h5 class="mt-2">購買</h5>
+          <hr />
+          <div class="col-12" v-for="item in list">
+            <a :href="item.link">
+              <figure class="figure">
+                <img
+                  :src="item.img"
+                  class="figure-img img-fluid rounded"
+                  alt="..."
+                />
+                <figcaption class="figure-caption text-end">
+                  {{item.text}}
+                </figcaption>
+              </figure>
+            </a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-3">
+          <div
+            class="mt-2 text-secondary mb-5"
+            id="more"
+            role="button"
+            v-on:click="moreClick"
+          >
+            {{more}}
+          </div>
+        </div>
+      </div>
+
+      <!-- <h4 class="mt-5">購買</h4>
+      <hr />
+      <div class="row" id="buy">
+        <div class="col-12 col-sm-6 col-md-6" v-for="item in list">
+          <a :href="item.link">
+            <figure class="figure">
+              <img
+                :src="item.img"
+                class="figure-img img-fluid rounded"
+                alt="..."
+              />
+              <figcaption class="figure-caption text-end">
+                {{item.text}}
+              </figcaption>
+            </figure>
+          </a>
+        </div>
+      </div> -->
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <script>
+    var signUp = new Vue({
+      el: "#sign-up",
+      data: {
+        list: [
+          {
+            img: "./s1.jpeg",
+            text: "｜進駐遊牧商店",
+            link: "https://pros.si/3hvq89",
+          },
+          {
+            img: "./s2.jpeg",
+            text: "｜邊緣人市集・12月場次",
+            link: "https://docs.google.com/forms/d/e/1FAIpQLScf3jY5EKVHDZEY2GMuFg-6Nt1nrypbZCZptZofXpgbo5whQw/viewform",
+          },
+          {
+            img: "./s3.jpeg",
+            text: "｜邊緣人市集・12月漢神巨蛋｜耶誕市集",
+            link: "https://docs.google.com/forms/d/e/1FAIpQLSfGTOzAG-Fkb2R_p0FpQFsAcDuEgrdeALyyTQUzPzmNMqvMWQ/viewform",
+          },
+          {
+            img: "./s4.jpeg",
+            text: "｜邊緣人市集・11月場次",
+            link: "https://docs.google.com/forms/d/e/1FAIpQLSc90o7U_SQHcVe6jJbQ26yjeS0udIPUAj2wwcC0uSOjIqNO6w/viewform",
+          },
+          {
+            img: "./s5.jpeg",
+            text: "｜邊緣人市集・11月衛武營【WOW世界女性藝術節市集】",
+            link: "https://docs.google.com/forms/d/e/1FAIpQLScPUyICWJIfqwUsCk-pB90kjUYOogmS3P7pPZD7xL2gZ-cjog/viewform",
+          },
+          {
+            img: "./s6.jpeg",
+            text: "｜邊緣人市集・11月漢神巨蛋 歐洲小鎮",
+            link: "https://docs.google.com/forms/d/e/1FAIpQLScNMNtPqvtMBm0l0IVvcwz1F7EQSw67oN5mS1ZLKgZjA35tTg/viewform",
+          },
+          {
+            img: "./s7.jpeg",
+            text: "｜邊緣夥伴招募",
+            link: "https://pros.si/3hvq89",
+          },
+        ],
+      },
+    });
+    var recruit = new Vue({
+      el: "#recruit",
+      data: {
+        list: [
+          {
+            img: "./r1.jpeg",
+            text: "｜邊緣夥伴招募",
+            link: "https://docs.google.com/forms/d/e/1FAIpQLScwGwPZ0xGgiZ95nOurvoxw5AWYsNYpTO30-MIbbvpJNrLLnQ/viewform",
+          },
+        ],
+      },
+    });
+    var buy = new Vue({
+      el: "#buy",
+      data: {
+        list: [
+          {
+            img: "./b1.jpeg",
+            text: "｜邊緣商品",
+            link: "https://docs.google.com/forms/d/1a1SLrtUZHdVrjczZe2C3AK8ZrJLXH6GO6LMynIPD2Zs/edit",
+          },
+        ],
+      },
+    });
+    var more = new Vue({
+      el: "#more",
+      data: {
+        more: "more...",
+      },
+      methods: {
+        moreClick: function () {
+          const text = [
+            "No more!",
+            "Maybe something more...",
+            "You should stop!",
+            "Don't do again!",
+            "夠了..",
+            "more...",
+          ];
+          const no = Math.floor(Math.random() * text.length);
+          console.log(text[no]);
+          this.more = text[no];
+        },
+      },
+    });
+    var edgework = new Vue({
+      el: "#edgework",
+      data: {
+        text: "EDGEWORK",
+        theme: "text-dark bg-white",
+      },
+      methods: {
+        moreClick: function () {
+          const text = [
+            "EDGEWORK",
+            "邊緣工事",
+            "フリンジ要塞",
+            "ป้อมปราการริม",
+            "프린지 요새",
+            "Kraštiniai įtvirtinimai",
+          ];
+          const theme = [
+            "text-white bg-dark",
+            "text-dark bg-white",
+            "text-white bg-warning",
+          ];
+          const no = Math.floor(Math.random() * text.length);
+          const themeNo = Math.floor(Math.random() * theme.length);
+          this.text = text[no];
+          this.theme = theme[themeNo];
+          mybody.theme = theme[themeNo];
+          title.text = text[no];
+
+          console.log(mybody);
+        },
+      },
+    });
+    var title = new Vue({
+      el: "#title",
+      data: {
+        text: edgework.text,
+      },
+    });
+  </script>
+</html>
