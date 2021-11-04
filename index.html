@@ -29,6 +29,9 @@
         font-size: 4rem;
         font-weight: lighter;
       }
+      h4 {
+        font-weight: lighter;
+      }
       ul.marquee {
         position: fixed;
         z-index: -1;
@@ -88,7 +91,7 @@
       </h5>
 
       <h4 class="mt-5 lay2">報名</h4>
-      <hr class="lay2" />
+      <!-- <hr class="lay2" /> -->
       <div class="row lay2" id="sign-up">
         <div class="col-6 col-sm-4 col-md-3" v-for="item in list">
           <div role="button" v-on:click="clickLink(item.link)">
