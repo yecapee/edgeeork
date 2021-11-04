@@ -66,6 +66,21 @@
         animation: move 15s infinite linear !important;
       }
 
+      .lay1 {
+        top: 0;
+        left: 0;
+        position: fixed;
+        margin: 0;
+        padding: 0.5rem;
+        width: 100%;
+        transition: 0.5s;
+        z-index: 100;
+      }
+
+      .lay2 {
+        margin-top: 10rem;
+      }
+
       #sign-up {
         background-color: rgba(0, 0, 0, 0);
       }
@@ -82,42 +97,23 @@
   </head>
   <body>
     <div id="container" class="container">
-      <h1 class="lay1" id="edgework" v-on:click="moreClick" role="button">
-        {{text}}
-      </h1>
-      <h5 class="lay1">
-        <a href="https://www.facebook.com/theedgeman/" class="text-reset"
-          ><i class="fab fa-facebook"></i
-        ></a>
-        <a href="https://www.instagram.com/edge_work/" class="text-reset"
-          ><i class="fab fa-instagram"></i
-        ></a>
-      </h5>
-
-      <h4 class="mt-5 lay2">報名</h4>
-      <!-- <hr class="lay2" /> -->
-      <div class="row lay2 pt-3 mx-n1" id="sign-up">
-        <div class="col-6 col-sm-4 col-md-3" v-for="item in list">
-          <div role="button" v-on:click="clickLink(item.link)">
-            <figure class="figure">
-              <img
-                :src="item.img"
-                class="figure-img img-fluid rounded"
-                alt="..."
-              />
-              <figcaption class="figure-caption text-end">
-                {{item.text}}
-              </figcaption>
-            </figure>
-          </div>
-        </div>
+      <div class="lay1">
+        <h1 id="edgework" v-on:click="moreClick" role="button">{{text}}</h1>
+        <h5>
+          <a href="https://www.facebook.com/theedgeman/" class="text-reset"
+            ><i class="fab fa-facebook"></i
+          ></a>
+          <a href="https://www.instagram.com/edge_work/" class="text-reset"
+            ><i class="fab fa-instagram"></i
+          ></a>
+        </h5>
       </div>
 
-      <div class="row lay2">
-        <div class="col-6 col-sm-4 col-md-3 bg-warning text-white" id="recruit">
-          <h5 class="mt-2">徵人</h5>
-          <hr />
-          <div class="col-12" v-for="item in list">
+      <div class="lay2">
+        <h4 class="mt-5">報名</h4>
+        <!-- <hr class="lay2" /> -->
+        <div class="row pt-3 mx-n1" id="sign-up">
+          <div class="col-6 col-sm-4 col-md-3" v-for="item in list">
             <div role="button" v-on:click="clickLink(item.link)">
               <figure class="figure">
                 <img
@@ -132,21 +128,45 @@
             </div>
           </div>
         </div>
-        <div class="col-6 col-sm-4 col-md-3 bg-info text-white" id="buy">
-          <h5 class="mt-2">購買</h5>
-          <hr />
-          <div class="col-12" v-for="item in list">
-            <div role="button" v-on:click="clickLink(item.link)">
-              <figure class="figure">
-                <img
-                  :src="item.img"
-                  class="figure-img img-fluid rounded"
-                  alt="..."
-                />
-                <figcaption class="figure-caption text-end">
-                  {{item.text}}
-                </figcaption>
-              </figure>
+
+        <div class="row">
+          <div
+            class="col-6 col-sm-4 col-md-3 bg-warning text-white"
+            id="recruit"
+          >
+            <h5 class="mt-2">徵人</h5>
+            <hr />
+            <div class="col-12" v-for="item in list">
+              <div role="button" v-on:click="clickLink(item.link)">
+                <figure class="figure">
+                  <img
+                    :src="item.img"
+                    class="figure-img img-fluid rounded"
+                    alt="..."
+                  />
+                  <figcaption class="figure-caption text-end">
+                    {{item.text}}
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-sm-4 col-md-3 bg-info text-white" id="buy">
+            <h5 class="mt-2">購買</h5>
+            <hr />
+            <div class="col-12" v-for="item in list">
+              <div role="button" v-on:click="clickLink(item.link)">
+                <figure class="figure">
+                  <img
+                    :src="item.img"
+                    class="figure-img img-fluid rounded"
+                    alt="..."
+                  />
+                  <figcaption class="figure-caption text-end">
+                    {{item.text}}
+                  </figcaption>
+                </figure>
+              </div>
             </div>
           </div>
         </div>
@@ -189,16 +209,15 @@
   <script>
     function fadeOut(cb) {
       //container
+      $("ul.marquee").css({ color: "rgba(0,0,0,.8)" });
       $(".lay2").animate(
         {
           opacity: 0,
-          // marginLeft: "-100%",
         },
         500,
         function () {
           $(".lay1").animate(
             {
-              opacity: 0.25,
               marginLeft: "-100%",
             },
             500,
@@ -330,6 +349,18 @@
           this.theme = theme[themeNo];
         },
       },
+    });
+
+    $(window).scroll(function () {
+      const abs = $(this).scrollTop();
+      console.log("qwdqd");
+      if (abs > 50) {
+        $(".lay1").css({ backgroundColor: "aquamarine" });
+        $("ul.marquee").css({ color: "rgba(0,0,0,.2)" });
+      } else {
+        $(".lay1").css({ backgroundColor: "rgba(0,0,0,0)" });
+        $("ul.marquee").css({ color: "rgba(0,0,0,.8)" });
+      }
     });
   </script>
 </html>
