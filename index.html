@@ -13,7 +13,9 @@
       crossorigin="anonymous"
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
     <script
       src="https://kit.fontawesome.com/f267a6d408.js"
       crossorigin="anonymous"
@@ -22,6 +24,42 @@
     <style>
       h1 {
         font-size: 4rem;
+      }
+      ul.marquee {
+        position: absolute;
+        z-index: -1;
+        top: 50%;
+        margin-top: -10rem;
+        font-size: 20rem;
+        margin-left: -50%;
+        padding: 0;
+        /* animation: move 5s infinite; */
+        overflow: hidden;
+        white-space: nowrap;
+        display: inline-block;
+        width: 200%;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.1);
+        transform: rotate(10deg);
+      }
+      ul.marquee li {
+        min-width: 100%;
+        list-style: none;
+        display: inline-block;
+        text-align: center;
+        overflow: hidden;
+      }
+      ul.marquee li:first-child {
+        animation: move 60s infinite linear;
+      }
+
+      @keyframes move {
+        0% {
+          margin-left: 0rem;
+        }
+        100% {
+          margin-left: -734rem;
+        }
       }
     </style>
   </head>
@@ -104,27 +142,17 @@
           </div>
         </div>
       </div>
-
-      <!-- <h4 class="mt-5">購買</h4>
-      <hr />
-      <div class="row" id="buy">
-        <div class="col-12 col-sm-6 col-md-6" v-for="item in list">
-          <a :href="item.link">
-            <figure class="figure">
-              <img
-                :src="item.img"
-                class="figure-img img-fluid rounded"
-                alt="..."
-              />
-              <figcaption class="figure-caption text-end">
-                {{item.text}}
-              </figcaption>
-            </figure>
-          </a>
-        </div>
-      </div> -->
     </div>
-
+    <ul id="marquee" class="marquee">
+      <li>
+        EDGEWORK 邊緣工事 フリンジ要塞 ป้อมปราการริม 프린지 요새 Kraštiniai
+        įtvirtinimai
+      </li>
+      <li>
+        EDGEWORK 邊緣工事 フリンジ要塞 ป้อมปราการริม 프린지 요새 Kraštiniai
+        įtvirtinimai
+      </li>
+    </ul>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
