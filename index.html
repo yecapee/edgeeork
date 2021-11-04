@@ -66,6 +66,10 @@
         animation: move 15s infinite linear !important;
       }
 
+      #sign-up {
+        background-color: rgba(0, 0, 0, 0);
+      }
+
       @keyframes move {
         0% {
           margin-left: 0rem;
@@ -92,7 +96,7 @@
 
       <h4 class="mt-5 lay2">報名</h4>
       <!-- <hr class="lay2" /> -->
-      <div class="row lay2" id="sign-up">
+      <div class="row lay2 pt-3 mx-n1" id="sign-up">
         <div class="col-6 col-sm-4 col-md-3" v-for="item in list">
           <div role="button" v-on:click="clickLink(item.link)">
             <figure class="figure">
@@ -109,7 +113,7 @@
         </div>
       </div>
 
-      <div class="row mt-5 lay2">
+      <div class="row lay2">
         <div class="col-6 col-sm-4 col-md-3 bg-warning text-white" id="recruit">
           <h5 class="mt-2">徵人</h5>
           <hr />
@@ -144,16 +148,6 @@
                 </figcaption>
               </figure>
             </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-4 col-md-3">
-          <div
-            class="mt-2 text-secondary mb-5"
-            id="more"
-            role="button"
-            v-on:click="moreClick"
-          >
-            {{more}}
           </div>
         </div>
       </div>
@@ -306,27 +300,6 @@
           fadeOut(function () {
             window.location.href = link;
           });
-        },
-      },
-    });
-    var more = new Vue({
-      el: "#more",
-      data: {
-        more: "more...",
-      },
-      methods: {
-        moreClick: function () {
-          const text = [
-            "No more!",
-            "Maybe something more...",
-            "You should stop!",
-            "Don't do again!",
-            "夠了..",
-            "more...",
-          ];
-          const no = Math.floor(Math.random() * text.length);
-          console.log(text[no]);
-          this.more = text[no];
         },
       },
     });
