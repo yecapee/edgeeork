@@ -22,6 +22,9 @@
     ></script>
     <title id="title">EDGEWORK</title>
     <style>
+      body {
+        transition: 2s;
+      }
       h1 {
         font-size: 4rem;
         font-weight: lighter;
@@ -43,6 +46,7 @@
         font-weight: bold;
         color: rgba(0, 0, 0, 0.8);
         transform: rotate(10deg);
+        transition: 5s;
       }
       ul.marquee li {
         min-width: 100%;
@@ -70,9 +74,11 @@
     </style>
   </head>
   <body>
-    <div class="container">
-      <h1 id="edgework" v-on:click="moreClick" role="button">{{text}}</h1>
-      <h5>
+    <div id="container" class="container">
+      <h1 class="lay1" id="edgework" v-on:click="moreClick" role="button">
+        {{text}}
+      </h1>
+      <h5 class="lay1">
         <a href="https://www.facebook.com/theedgeman/" class="text-reset"
           ><i class="fab fa-facebook"></i
         ></a>
@@ -81,11 +87,11 @@
         ></a>
       </h5>
 
-      <h4 class="mt-5">報名</h4>
-      <hr />
-      <div class="row" id="sign-up">
+      <h4 class="mt-5 lay2">報名</h4>
+      <hr class="lay2" />
+      <div class="row lay2" id="sign-up">
         <div class="col-6 col-sm-4 col-md-3" v-for="item in list">
-          <a :href="item.link">
+          <div role="button" v-on:click="clickLink(item.link)">
             <figure class="figure">
               <img
                 :src="item.img"
@@ -96,16 +102,16 @@
                 {{item.text}}
               </figcaption>
             </figure>
-          </a>
+          </div>
         </div>
       </div>
 
-      <div class="row mt-5">
+      <div class="row mt-5 lay2">
         <div class="col-6 col-sm-4 col-md-3 bg-warning text-white" id="recruit">
           <h5 class="mt-2">徵人</h5>
           <hr />
           <div class="col-12" v-for="item in list">
-            <a :href="item.link">
+            <div role="button" v-on:click="clickLink(item.link)">
               <figure class="figure">
                 <img
                   :src="item.img"
@@ -116,14 +122,14 @@
                   {{item.text}}
                 </figcaption>
               </figure>
-            </a>
+            </div>
           </div>
         </div>
         <div class="col-6 col-sm-4 col-md-3 bg-info text-white" id="buy">
           <h5 class="mt-2">購買</h5>
           <hr />
           <div class="col-12" v-for="item in list">
-            <a :href="item.link">
+            <div role="button" v-on:click="clickLink(item.link)">
               <figure class="figure">
                 <img
                   :src="item.img"
@@ -134,7 +140,7 @@
                   {{item.text}}
                 </figcaption>
               </figure>
-            </a>
+            </div>
           </div>
         </div>
         <div class="col-12 col-sm-4 col-md-3">
@@ -149,7 +155,7 @@
         </div>
       </div>
     </div>
-    <ul class="marquee">
+    <ul class="marquee lay3">
       <li>
         EDGEWORK 邊緣工事 フリンジ要塞 ป้อมปราการริม 프린지 요새 Kraštiniai
         įtvirtinimai
@@ -184,6 +190,32 @@
     ></script>
   </body>
   <script>
+    function fadeOut(cb) {
+      //container
+      $(".lay2").animate(
+        {
+          opacity: 0,
+          // marginLeft: "-100%",
+        },
+        500,
+        function () {
+          $(".lay1").animate(
+            {
+              opacity: 0.25,
+              marginLeft: "-100%",
+            },
+            500,
+            function () {
+              $(".lay3").css({
+                transform: "scale(20)",
+              });
+              $("body").css({ background: "black" });
+              cb();
+            }
+          );
+        }
+      );
+    }
     var signUp = new Vue({
       el: "#sign-up",
       data: {
@@ -225,6 +257,14 @@
           },
         ],
       },
+      methods: {
+        clickLink: function (link) {
+          console.log(link);
+          fadeOut(function () {
+            window.location.href = link;
+          });
+        },
+      },
     });
     var recruit = new Vue({
       el: "#recruit",
@@ -237,6 +277,14 @@
           },
         ],
       },
+      methods: {
+        clickLink: function (link) {
+          console.log(link);
+          fadeOut(function () {
+            window.location.href = link;
+          });
+        },
+      },
     });
     var buy = new Vue({
       el: "#buy",
@@ -248,6 +296,14 @@
             link: "https://docs.google.com/forms/d/1a1SLrtUZHdVrjczZe2C3AK8ZrJLXH6GO6LMynIPD2Zs/edit",
           },
         ],
+      },
+      methods: {
+        clickLink: function (link) {
+          console.log(link);
+          fadeOut(function () {
+            window.location.href = link;
+          });
+        },
       },
     });
     var more = new Vue({
