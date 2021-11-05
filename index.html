@@ -197,24 +197,6 @@
         įtvirtinimai
       </li>
     </ul>
-    <!-- <ul
-      class="marquee"
-      style="
-        margin-top: -5rem;
-        transform: rotate(-10deg) scale(0.5, 0.45);
-        color: rgba(190, 247, 255, 0.5);
-      "
-    >
-      <li class="fast">
-        EDGEWORK 邊緣工事 フリンジ要塞 ป้อมปราการริม 프린지 요새 Kraštiniai
-        įtvirtinimai
-      </li>
-      <li>
-        EDGEWORK 邊緣工事 フリンジ要塞 ป้อมปราการริม 프린지 요새 Kraštiniai
-        įtvirtinimai
-      </li>
-    </ul> -->
-    <!-- Option 1: Bootstrap Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -222,34 +204,6 @@
     ></script>
   </body>
   <script>
-    function fadeOut(cb) {
-      //container
-      const abs = $(this).scrollTop();
-      if (abs > 10) {
-        zoomIn();
-      }
-      $("ul.marquee").css({ color: "rgba(0,0,0,.8)" });
-      $(".lay1").animate(
-        {
-          marginLeft: "-100%",
-        },
-        500,
-        function () {
-          $(".lay3").css({
-            transform: "scale(20)",
-          });
-          $("body").css({ background: "black" });
-          cb();
-        }
-      );
-      // $(".lay2").animate(
-      //   {
-      //     opacity: 0,
-      //   },
-      //   500,
-
-      // );
-    }
     var signUp = new Vue({
       el: "#sign-up",
       data: {
@@ -333,7 +287,6 @@
       },
       methods: {
         clickLink: function (link) {
-          console.log(link);
           fadeOut(function () {
             window.location.href = link;
           });
@@ -377,6 +330,27 @@
         zoomIn();
       }
     });
+
+    function fadeOut(cb) {
+      const abs = $(this).scrollTop();
+      if (abs > 10) {
+        zoomIn();
+      }
+      $("ul.marquee").css({ color: "rgba(0,0,0,.8)" });
+      $(".lay1").animate(
+        {
+          marginLeft: "-100%",
+        },
+        500,
+        function () {
+          $(".lay3").css({
+            transform: "scale(20)",
+          });
+          $("body").css({ background: "black" });
+          cb();
+        }
+      );
+    }
 
     function zoomIn() {
       $(".lay1").css({ backgroundColor: "rgba(0,0,0,0)" });
