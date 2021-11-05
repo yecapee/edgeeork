@@ -217,6 +217,10 @@
   <script>
     function fadeOut(cb) {
       //container
+      const abs = $(this).scrollTop();
+      if (abs > 10) {
+        zoomIn();
+      }
       $("ul.marquee").css({ color: "rgba(0,0,0,.8)" });
       $(".lay2").animate(
         {
@@ -362,18 +366,26 @@
     $(window).scroll(function () {
       const abs = $(this).scrollTop();
       if (abs > 10) {
-        $(".lay1").css({ backgroundColor: "aquamarine" });
-        $("ul.marquee").css({ color: "rgba(0,0,0,.2)" });
-        // $("h1").css({ transform: "scale(.5)" });
-        $("h1").css({ fontSize: "1.5rem" });
-        $("h1, h5").css({ display: "inline-block" });
+        zoomOut();
       } else {
-        $(".lay1").css({ backgroundColor: "rgba(0,0,0,0)" });
-        $("ul.marquee").css({ color: "rgba(0,0,0,.8)" });
-        // $("h1").css({ transform: "scale(1)" });
-        $("h1").css({ fontSize: "4rem" });
-        $("h1, h5").css({ display: "block" });
+        zoomIn();
       }
     });
+
+    function zoomIn() {
+      $(".lay1").css({ backgroundColor: "rgba(0,0,0,0)" });
+      $("ul.marquee").css({ color: "rgba(0,0,0,.8)" });
+      // $("h1").css({ transform: "scale(1)" });
+      $("h1").css({ fontSize: "4rem" });
+      $("h1, h5").css({ display: "block" });
+    }
+
+    function zoomOut() {
+      $(".lay1").css({ backgroundColor: "aquamarine" });
+      $("ul.marquee").css({ color: "rgba(0,0,0,.04)" });
+      // $("h1").css({ transform: "scale(.5)" });
+      $("h1").css({ fontSize: "1.5rem" });
+      $("h1, h5").css({ display: "inline-block" });
+    }
   </script>
 </html>
