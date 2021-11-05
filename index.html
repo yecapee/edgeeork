@@ -335,6 +335,8 @@
       const abs = $(this).scrollTop();
       if (abs > 10) {
         zoomIn();
+      } else {
+        return;
       }
       $("ul.marquee").css({ color: "rgba(0,0,0,.8)" });
       $(".lay1").animate(
