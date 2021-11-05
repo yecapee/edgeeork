@@ -28,6 +28,8 @@
       h1 {
         font-size: 4rem;
         font-weight: lighter;
+        transition: 0.5s;
+        vertical-align: middle;
       }
       h4 {
         font-weight: lighter;
@@ -49,7 +51,9 @@
         font-weight: bold;
         color: rgba(0, 0, 0, 0.8);
         transform: rotate(10deg);
-        transition: 5s;
+        /* transition: color 0.5s, scale(20) 5s; */
+        transition-property: color, transform;
+        transition-duration: 0.5s, 5s;
       }
       ul.marquee li {
         min-width: 100%;
@@ -79,6 +83,10 @@
 
       .lay2 {
         margin-top: 10rem;
+      }
+
+      .lay3 {
+        transition: 5s;
       }
 
       #sign-up {
@@ -353,13 +361,18 @@
 
     $(window).scroll(function () {
       const abs = $(this).scrollTop();
-      console.log("qwdqd");
-      if (abs > 50) {
+      if (abs > 10) {
         $(".lay1").css({ backgroundColor: "aquamarine" });
         $("ul.marquee").css({ color: "rgba(0,0,0,.2)" });
+        // $("h1").css({ transform: "scale(.5)" });
+        $("h1").css({ fontSize: "1.5rem" });
+        $("h1, h5").css({ display: "inline-block" });
       } else {
         $(".lay1").css({ backgroundColor: "rgba(0,0,0,0)" });
         $("ul.marquee").css({ color: "rgba(0,0,0,.8)" });
+        // $("h1").css({ transform: "scale(1)" });
+        $("h1").css({ fontSize: "4rem" });
+        $("h1, h5").css({ display: "block" });
       }
     });
   </script>
