@@ -79,7 +79,7 @@
         left: 0;
         position: fixed;
         margin: 0;
-        padding: 0.5rem 0.6rem;
+        padding: 0.5rem 0;
         width: 100%;
         transition: 0.5s;
         z-index: 100;
@@ -108,8 +108,8 @@
     </style>
   </head>
   <body>
-    <div id="container" class="container">
-      <div class="lay1">
+    <div class="lay1">
+      <div class="container">
         <h1 id="edgework" v-on:click="moreClick" role="button">{{text}}</h1>
         <h5>
           <a href="https://www.facebook.com/theedgeman/" class="text-reset"
@@ -120,7 +120,8 @@
           ></a>
         </h5>
       </div>
-
+    </div>
+    <div id="container" class="container">
       <div class="lay2">
         <h4 class="mt-5">報名</h4>
         <!-- <hr class="lay2" /> -->
