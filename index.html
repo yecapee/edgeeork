@@ -116,7 +116,7 @@
         height: 2vw;
         border-radius: 1vw; */
         opacity: 1;
-        animation: circle 0.3s linear;
+        animation: circle 0.5s ease-in-out;
         z-index: 999;
       }
 
@@ -132,12 +132,12 @@
         }
         100% {
           opacity: 1;
-          width: 100vw;
-          height: 100vw;
+          width: 300vw;
+          height: 300vw;
           /* transform: scale(100); */
-          border-radius: 50vw;
-          margin-top: -50vw;
-          margin-left: -50vw;
+          border-radius: 150vw;
+          margin-top: -150vw;
+          margin-left: -150vw;
         }
       }
     </style>
@@ -364,7 +364,7 @@
               $(this).text(text[no]);
             }
           )
-          .delay(300)
+          .delay(500)
           .animate(
             {
               opacity: 1,
