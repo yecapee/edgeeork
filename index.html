@@ -34,6 +34,8 @@
       h5 {
         margin: 0;
         vertical-align: middle;
+        z-index: 100;
+        position: relative;
       }
       h4 {
         font-weight: lighter;
@@ -340,7 +342,10 @@
 
     const titleClick = function (dom) {
       let no = 0;
+      let clicked = false;
       return function (e) {
+        if (clicked) return;
+        clicked = true;
         const text = [
           "EDGEWORK",
           "邊緣工事",
@@ -372,6 +377,7 @@
             500,
             function () {
               $(this).css({ transition: "0.5s" });
+              clicked = false;
             }
           );
       };
@@ -393,8 +399,7 @@
       if (abs > 10) {
         newDiv.css({
           position: "absolute",
-          backgroundColor: "rgba(0,0,0,.2)",
-          zIndex: "-1",
+          backgroundColor: "mediumspringgreen",
         });
         $("#lay1").append(newDiv);
       } else {
