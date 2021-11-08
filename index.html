@@ -338,19 +338,22 @@
       } else {
         return;
       }
-      $("ul.marquee").css({ color: "rgba(0,0,0,.8)" });
-      $(".lay1").animate(
-        {
-          marginLeft: "-100%",
-        },
-        500,
-        function () {
-          $(".lay3").css({
-            transform: "scale(20)",
-          });
-          $("body").css({ background: "black" });
-          cb();
-        }
+      setTimeout(
+        () =>
+          $(".lay1").animate(
+            {
+              marginLeft: "-100%",
+            },
+            500,
+            function () {
+              $(".lay3").css({
+                transform: "scale(20)",
+              });
+              $("body").css({ background: "black" });
+              cb();
+            }
+          ),
+        500
       );
     }
 
