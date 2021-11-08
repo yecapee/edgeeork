@@ -83,6 +83,7 @@
         width: 100%;
         transition: 0.5s;
         z-index: 100;
+        overflow: hidden;
       }
 
       .lay2 {
@@ -108,12 +109,43 @@
           margin-left: -734rem;
         }
       }
+
+      div.circle {
+        position: fixed;
+        /* width: 2vw;
+        height: 2vw;
+        border-radius: 1vw; */
+        opacity: 1;
+        animation: circle 0.3s linear;
+        z-index: 999;
+      }
+
+      @keyframes circle {
+        0% {
+          opacity: 1;
+          width: 2vw;
+          height: 2vw;
+          border-radius: 1vw;
+          margin-top: -1vw;
+          margin-left: -1vw;
+          /* transform: scale(1); */
+        }
+        100% {
+          opacity: 1;
+          width: 100vw;
+          height: 100vw;
+          /* transform: scale(100); */
+          border-radius: 50vw;
+          margin-top: -50vw;
+          margin-left: -50vw;
+        }
+      }
     </style>
   </head>
   <body>
-    <div class="lay1">
+    <div id="lay1" class="lay1">
       <div class="container">
-        <h1 id="edgework" v-on:click="moreClick" role="button">{{text}}</h1>
+        <h1 id="edgework" role="button">EDGEWORK</h1>
         <h5>
           <a href="https://www.facebook.com/theedgeman/" class="text-reset"
             ><i class="fab fa-facebook"></i
@@ -297,31 +329,84 @@
     var edgework = new Vue({
       el: "#edgework",
       data: {
+        no: 0,
         text: "EDGEWORK",
         theme: "text-dark bg-white",
       },
       methods: {
-        moreClick: function () {
-          const text = [
-            "EDGEWORK",
-            "邊緣工事",
-            "フリンジ要塞",
-            "ป้อมปราการริม",
-            "프린지 요새",
-            "Kraštiniai įtvirtinimai",
-          ];
-          const theme = [
-            "text-white bg-dark",
-            "text-dark bg-white",
-            "text-white bg-warning",
-          ];
-          const no = Math.floor(Math.random() * text.length);
-          const themeNo = Math.floor(Math.random() * theme.length);
-          this.text = text[no];
-          this.theme = theme[themeNo];
-        },
+        moreClick: function () {},
       },
     });
+
+    const titleClick = function (dom) {
+      let no = 0;
+      return function (e) {
+        const text = [
+          "EDGEWORK",
+          "邊緣工事",
+          "フリンジ要塞",
+          "ป้อมปราการริม",
+          "프린지 요새",
+          "Kraštiniai įtvirtinimai",
+        ];
+
+        no = (no + 1) % text.length;
+        //$(this).text("");
+        createCircle(e.clientY, e.clientX);
+        dom
+          .css({ transition: "0s" })
+          .animate(
+            {
+              opacity: 0,
+            },
+            0,
+            function () {
+              $(this).text(text[no]);
+            }
+          )
+          .delay(300)
+          .animate(
+            {
+              opacity: 1,
+            },
+            500,
+            function () {
+              $(this).css({ transition: "0.5s" });
+            }
+          );
+      };
+    };
+
+    function createCircle(y, x) {
+      const newDiv = $(document.createElement("div"))
+        .attr("class", "circle")
+        .css({
+          top: y + "px",
+          left: x + "px",
+          // backgroundColor: `rgba(${Math.random() * 255}, ${
+          //   Math.random() * 255
+          // }, ${Math.random() * 255}, 1)`,
+          backgroundColor: "aquamarine",
+        });
+
+      const abs = $(this).scrollTop();
+      if (abs > 10) {
+        newDiv.css({
+          position: "absolute",
+          backgroundColor: "rgba(0,0,0,.2)",
+          zIndex: "-1",
+        });
+        $("#lay1").append(newDiv);
+      } else {
+        $("body").append(newDiv);
+      }
+
+      setTimeout(() => {
+        newDiv.remove();
+      }, 500);
+    }
+
+    $("#edgework").click(titleClick($("#edgework")));
 
     $(window).scroll(function () {
       const abs = $(this).scrollTop();
