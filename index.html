@@ -340,7 +340,7 @@
       },
     });
 
-    const titleClick = function (dom) {
+    const titleClick = function (dom, cb) {
       let no = 0;
       let clicked = false;
       return function (e) {
@@ -356,7 +356,6 @@
         ];
 
         no = (no + 1) % text.length;
-        //$(this).text("");
         createCircle(e.clientY, e.clientX);
         dom
           .css({ transition: "0s" })
@@ -366,7 +365,7 @@
             },
             0,
             function () {
-              $(this).text(text[no]);
+              cb(text[no]);
             }
           )
           .delay(500)
@@ -399,7 +398,8 @@
       if (abs > 10) {
         newDiv.css({
           position: "absolute",
-          backgroundColor: "mediumspringgreen",
+          // backgroundColor: "#b2dbcd",
+          backgroundColor: "rgba(178,219,205,.2)",
         });
         $("#lay1").append(newDiv);
       } else {
@@ -411,7 +411,11 @@
       }, 500);
     }
 
-    $("#edgework").click(titleClick($("#edgework")));
+    $("#edgework").click(
+      titleClick($("#edgework, h5"), function (text) {
+        $("#edgework").text(text);
+      })
+    );
 
     $(window).scroll(function () {
       const abs = $(this).scrollTop();
