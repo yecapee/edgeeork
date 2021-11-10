@@ -434,23 +434,21 @@
       } else {
         return;
       }
-      setTimeout(
-        () =>
-          $(".lay1").animate(
-            {
-              marginLeft: "-100%",
-            },
-            500,
-            function () {
-              $(".lay3").css({
-                transform: "scale(20)",
-              });
-              $("body").css({ background: "black" });
-              cb();
-            }
-          ),
-        500
-      );
+      $(".lay1")
+        .delay(500)
+        .animate(
+          {
+            marginLeft: "-100%",
+          },
+          500,
+          function () {
+            $(".lay3").css({
+              transform: "scale(20)",
+            });
+            $("body").css({ background: "black" });
+            cb();
+          }
+        );
     }
 
     function zoomIn() {
