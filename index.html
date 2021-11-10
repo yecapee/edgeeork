@@ -23,7 +23,7 @@
     <title id="title">EDGEWORK</title>
     <style>
       body {
-        transition: 2s;
+        transition: 0.5s;
       }
       h1 {
         font-size: 4rem;
@@ -96,7 +96,7 @@
       }
 
       .lay3 {
-        transition: 5s;
+        transition: 0.5s;
       }
 
       #sign-up {
@@ -446,7 +446,7 @@
               transform: "scale(20)",
             });
             $("body").css({ background: "black" });
-            cb();
+            setTimeout(cb, 500);
           }
         );
     }
