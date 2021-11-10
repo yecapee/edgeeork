@@ -90,9 +90,8 @@
 
       .lay2 {
         margin-top: 10rem;
-        opacity: 0;
         transition: 0.5s;
-        z-index: 0;
+        opacity: 0;
       }
 
       .lay3 {
@@ -446,14 +445,14 @@
               transform: "scale(20)",
             });
             $("body").css({ background: "black" });
-            setTimeout(cb, 500);
+            // setTimeout(cb, 500);
           }
         );
     }
 
     function zoomIn() {
       $(".lay1").css({ backgroundColor: "rgba(0,0,0,0)" });
-      $(".lay2").css({ opacity: 0, zIndex: -100 });
+      $(".lay2").css({ opacity: 0 });
       $("ul.marquee").css({ color: "rgba(0,0,0,.8)" });
       // $("h1").css({ transform: "scale(1)" });
       $("h1").css({ fontSize: "4rem" });
@@ -462,7 +461,7 @@
 
     function zoomOut() {
       $(".lay1").css({ backgroundColor: "aquamarine" });
-      $(".lay2").css({ opacity: 1, zIndex: 0 });
+      $(".lay2").css({ opacity: 1 });
       $("ul.marquee").css({ color: "rgba(0,0,0,.04)" });
       // $("h1").css({ transform: "scale(.5)" });
       $("h1").css({ fontSize: "1.5rem" });
