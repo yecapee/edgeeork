@@ -147,7 +147,7 @@
     <div id="lay1" class="lay1">
       <div class="container">
         <h1 id="edgework" role="button">EDGEWORK</h1>
-        <h5>
+        <h5 class="social">
           <a href="https://www.facebook.com/theedgeman/" class="text-reset"
             ><i class="fab fa-facebook"></i
           ></a>
@@ -411,7 +411,7 @@
     }
 
     $("#edgework").click(
-      titleClick($("#edgework, h5"), function (text) {
+      titleClick($("#edgework, h5.social"), function (text) {
         $("#edgework").text(text);
       })
     );
