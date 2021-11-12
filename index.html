@@ -426,9 +426,10 @@
     });
 
     function fadeOut(cb) {
+      $(window).off("scroll");
       const abs = $(this).scrollTop();
       if (abs > 10) {
-        $(".lay2").css({ transition: 0 });
+        //$(".lay2").css({ transition: 0 });
         zoomIn();
       } else {
         return;
