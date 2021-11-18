@@ -56,7 +56,6 @@
         width: 200%;
         font-weight: bold;
         color: rgba(0, 0, 0, 0.8);
-        transform: rotate(10deg);
         /* transition: color 0.5s, scale(20) 5s; */
         transition-property: color, transform;
         transition-duration: 0.5s, 5s;
@@ -96,6 +95,7 @@
 
       .lay3 {
         transition: 0.5s;
+        transform: rotate(10deg);
       }
 
       #sign-up {
@@ -238,6 +238,7 @@
     ></script>
   </body>
   <script>
+    var first = true;
     var signUp = new Vue({
       el: "#sign-up",
       data: {
@@ -416,14 +417,17 @@
       })
     );
 
-    $(window).scroll(function () {
+    function scrollEvent() {
+      console.log("scrollEvent");
       const abs = $(this).scrollTop();
       if (abs > 10) {
         zoomOut();
       } else {
         zoomIn();
       }
-    });
+    }
+
+    $(window).on("scroll", scrollEvent);
 
     function fadeOut(cb) {
       $(window).off("scroll");
@@ -443,10 +447,11 @@
           500,
           function () {
             $(".lay3").css({
-              transform: "scale(20)",
+              transform: "scale(20) rotate(10deg)",
             });
             $("body").css({ background: "black" });
             setTimeout(cb, 500);
+            first = false;
           }
         );
     }
@@ -468,5 +473,17 @@
       $("h1").css({ fontSize: "1.5rem" });
       $("h1, h5").css({ display: "inline-block" });
     }
+
+    window.onpageshow = function () {
+      if (!first) {
+        $(".lay1").css({ marginLeft: 0 });
+        $("body").css({ background: "transparent" });
+        $(".lay3").css({
+          transform: "scale(1) rotate(10deg)",
+        });
+        zoomOut();
+        $(window).on("scroll", scrollEvent);
+      }
+    };
   </script>
 </html>
