@@ -1,0 +1,14 @@
+{
+  "name": "edgework",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/yecapee/edgework.git",
+  "author": "panpan <pan.pan@star-tech.tw>",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
