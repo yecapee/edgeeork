@@ -1,7 +1,7 @@
 {
   "name": "edgework",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "/",
   "repository": "https://github.com/yecapee/edgework.git",
   "author": "panpan <pan.pan@star-tech.tw>",
   "scripts": {
