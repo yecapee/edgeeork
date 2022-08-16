@@ -262,9 +262,10 @@
     methods: {
       clickLink: function (link) {
         console.log(link);
-        fadeOut(function () {
-          window.location.href = link;
-        });
+        window.open(link)
+        // fadeOut(function () {
+        //   window.location.href = link;
+        // });
       },
     },
   });
@@ -281,9 +282,10 @@
     },
     methods: {
       clickLink: function (link) {
-        fadeOut(function () {
-          window.location.href = link;
-        });
+        window.open(link)
+        // fadeOut(function () {
+        //   window.location.href = link;
+        // });
       },
     },
   });
