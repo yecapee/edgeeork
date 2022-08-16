@@ -1,175 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
-    <script
-      src="https://kit.fontawesome.com/f267a6d408.js"
-      crossorigin="anonymous"
-    ></script>
-    <title id="title">EDGEWORK</title>
-    <style>
-      body {
-        transition: 0.5s;
-      }
-      h1 {
-        font-size: 4rem;
-        font-weight: lighter;
-        transition: 0.5s;
-      }
-      h1,
-      h5 {
-        margin: 0;
-        vertical-align: middle;
-        z-index: 100;
-        position: relative;
-      }
-      h4 {
-        font-weight: lighter;
-      }
-      ul.marquee {
-        position: fixed;
-        z-index: -1;
-        bottom: 0;
-        margin-bottom: 10rem;
-        line-height: 20rem;
-        font-size: 20rem;
-        margin-left: -50%;
-        padding: 0;
-        /* animation: move 5s infinite; */
-        overflow: hidden;
-        white-space: nowrap;
-        display: inline-block;
-        width: 200%;
-        font-weight: bold;
-        color: rgba(0, 0, 0, 0.8);
-        /* transition: color 0.5s, scale(20) 5s; */
-        transition-property: color, transform;
-        transition-duration: 0.5s, 5s;
-      }
-      ul.marquee li {
-        min-width: 100%;
-        list-style: none;
-        display: inline-block;
-        text-align: center;
-        overflow: hidden;
-      }
-      ul.marquee li:first-child {
-        animation: move 90s infinite linear;
-      }
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-      .fast {
-        animation: move 15s infinite linear !important;
-      }
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
+  <script src="https://kit.fontawesome.com/f267a6d408.js" crossorigin="anonymous"></script>
+  <title id="title">EDGEWORK</title>
+  <style>
+    body {
+      transition: 0.5s;
+    }
 
-      .lay1 {
-        top: 0;
-        left: 0;
-        position: fixed;
-        margin: 0;
-        padding: 0.5rem 0;
-        width: 100%;
-        transition: 0.5s;
-        z-index: 100;
-        overflow: hidden;
-      }
+    h1 {
+      font-size: 4rem;
+      font-weight: lighter;
+      transition: 0.5s;
+    }
 
-      .lay2 {
-        margin-top: 10rem;
-        transition: 0.5s;
-        opacity: 0;
-      }
+    h1,
+    h5 {
+      margin: 0;
+      vertical-align: middle;
+      z-index: 100;
+      position: relative;
+    }
 
-      .lay3 {
-        transition: 0.5s;
-        transform: rotate(10deg);
-      }
+    h4 {
+      font-weight: lighter;
+    }
 
-      #sign-up {
-        background-color: rgba(0, 0, 0, 0);
-      }
+    ul.marquee {
+      position: fixed;
+      z-index: -1;
+      bottom: 0;
+      margin-bottom: 10rem;
+      line-height: 20rem;
+      font-size: 20rem;
+      margin-left: -50%;
+      padding: 0;
+      /* animation: move 5s infinite; */
+      overflow: hidden;
+      white-space: nowrap;
+      display: inline-block;
+      width: 200%;
+      font-weight: bold;
+      color: rgba(0, 0, 0, 0.8);
+      /* transition: color 0.5s, scale(20) 5s; */
+      transition-property: color, transform;
+      transition-duration: 0.5s, 5s;
+    }
 
-      @keyframes move {
-        0% {
-          margin-left: 0rem;
-        }
-        100% {
-          margin-left: -734rem;
-        }
+    ul.marquee li {
+      min-width: 100%;
+      list-style: none;
+      display: inline-block;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    ul.marquee li:first-child {
+      animation: move 90s infinite linear;
+    }
+
+    .fast {
+      animation: move 15s infinite linear !important;
+    }
+
+    .lay1 {
+      top: 0;
+      left: 0;
+      position: fixed;
+      margin: 0;
+      padding: 0.5rem 0;
+      width: 100%;
+      transition: 0.5s;
+      z-index: 100;
+      overflow: hidden;
+    }
+
+    .lay2 {
+      margin-top: 10rem;
+      transition: 0.5s;
+      opacity: 0;
+    }
+
+    .lay3 {
+      transition: 0.5s;
+      transform: rotate(10deg);
+    }
+
+    #sign-up {
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    @keyframes move {
+      0% {
+        margin-left: 0rem;
       }
 
-      div.circle {
-        position: fixed;
-        /* width: 2vw;
+      100% {
+        margin-left: -734rem;
+      }
+    }
+
+    div.circle {
+      position: fixed;
+      /* width: 2vw;
         height: 2vw;
         border-radius: 1vw; */
+      opacity: 1;
+      animation: circle 0.5s ease-in-out;
+      z-index: 999;
+    }
+
+    @keyframes circle {
+      0% {
         opacity: 1;
-        animation: circle 0.5s ease-in-out;
-        z-index: 999;
+        width: 2vw;
+        height: 2vw;
+        border-radius: 1vw;
+        margin-top: -1vw;
+        margin-left: -1vw;
+        /* transform: scale(1); */
       }
 
-      @keyframes circle {
-        0% {
-          opacity: 1;
-          width: 2vw;
-          height: 2vw;
-          border-radius: 1vw;
-          margin-top: -1vw;
-          margin-left: -1vw;
-          /* transform: scale(1); */
-        }
-        100% {
-          opacity: 1;
-          width: 300vw;
-          height: 300vw;
-          /* transform: scale(100); */
-          border-radius: 150vw;
-          margin-top: -150vw;
-          margin-left: -150vw;
-        }
+      100% {
+        opacity: 1;
+        width: 300vw;
+        height: 300vw;
+        /* transform: scale(100); */
+        border-radius: 150vw;
+        margin-top: -150vw;
+        margin-left: -150vw;
       }
-    </style>
-  </head>
-  <body>
-    <div id="lay1" class="lay1">
-      <div class="container">
-        <h1 id="edgework" role="button">EDGEWORK</h1>
-        <h5 class="social">
-          <a href="https://www.facebook.com/theedgeman/" class="text-reset"
-            ><i class="fab fa-facebook"></i
-          ></a>
-          <a href="https://www.instagram.com/edge_work/" class="text-reset"
-            ><i class="fab fa-instagram"></i
-          ></a>
-        </h5>
-      </div>
+    }
+
+    .figure {
+      width: 100%
+    }
+  </style>
+</head>
+
+<body>
+  <div id="lay1" class="lay1">
+    <div class="container">
+      <h1 id="edgework" role="button">EDGEWORK</h1>
+      <h5 class="social">
+        <a href="https://www.facebook.com/theedgeman/" class="text-reset"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/edge_work/" class="text-reset"><i class="fab fa-instagram"></i></a>
+      </h5>
     </div>
-    <div id="container" class="container">
-      <div class="lay2">
-        <h4 class="mt-5">報名</h4>
-        <!-- <hr class="lay2" /> -->
-        <div class="row pt-3 mx-n1" id="sign-up">
-          <div class="col-6 col-sm-4 col-md-3" v-for="item in list">
+  </div>
+  <div id="container" class="container">
+    <div class="lay2">
+      <h4 class="mt-5">最新動態</h4>
+      <!-- <hr class="lay2" /> -->
+      <div class="row pt-3 mx-n1" id="sign-up">
+        <div class="col-12 col-sm-6 col-md-3">
+          <div role="button" v-on:click="clickLink('https://www.instagram.com/edge_work/')">
+            <figure class="figure border p-3" v-for="item in list[0]">
+              <img :src="item.img" class="figure-img img-fluid rounded" alt="..." />
+              <figcaption class="figure-caption text-start text-break" v-html="item.text" />
+            </figure>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+          <div role="button" v-on:click="clickLink('https://www.instagram.com/edge_work/')">
+            <figure class="figure border p-3" v-for="item in list[1]">
+              <img :src="item.img" class="figure-img img-fluid rounded" alt="..." />
+              <figcaption class="figure-caption text-start text-break" v-html="item.text" />
+            </figure>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+          <div role="button" v-on:click="clickLink('https://www.instagram.com/edge_work/')">
+            <figure class="figure border p-3" v-for="item in list[2]">
+              <img :src="item.img" class="figure-img img-fluid rounded" alt="..." />
+              <figcaption class="figure-caption text-start text-break" v-html="item.text" />
+            </figure>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+          <div role="button" v-on:click="clickLink('https://www.instagram.com/edge_work/')">
+            <figure class="figure border p-3" v-for="item in list[3]">
+              <img :src="item.img" class="figure-img img-fluid rounded" alt="..." />
+              <figcaption class="figure-caption text-start text-break" v-html="item.text" />
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6 col-sm-4 col-md-3 bg-warning text-white" id="recruit">
+          <h5 class="mt-2">徵人</h5>
+          <hr />
+          <div class="col-12" v-for="item in list">
             <div role="button" v-on:click="clickLink(item.link)">
               <figure class="figure">
-                <img
-                  :src="item.img"
-                  class="figure-img img-fluid rounded"
-                  alt="..."
-                />
+                <img :src="item.img" class="figure-img img-fluid rounded" alt="..." />
                 <figcaption class="figure-caption text-end">
                   {{item.text}}
                 </figcaption>
@@ -177,313 +214,262 @@
             </div>
           </div>
         </div>
-
-        <div class="row">
-          <div
-            class="col-6 col-sm-4 col-md-3 bg-warning text-white"
-            id="recruit"
-          >
-            <h5 class="mt-2">徵人</h5>
-            <hr />
-            <div class="col-12" v-for="item in list">
-              <div role="button" v-on:click="clickLink(item.link)">
-                <figure class="figure">
-                  <img
-                    :src="item.img"
-                    class="figure-img img-fluid rounded"
-                    alt="..."
-                  />
-                  <figcaption class="figure-caption text-end">
-                    {{item.text}}
-                  </figcaption>
-                </figure>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-3 bg-info text-white" id="buy">
-            <h5 class="mt-2">購買</h5>
-            <hr />
-            <div class="col-12" v-for="item in list">
-              <div role="button" v-on:click="clickLink(item.link)">
-                <figure class="figure">
-                  <img
-                    :src="item.img"
-                    class="figure-img img-fluid rounded"
-                    alt="..."
-                  />
-                  <figcaption class="figure-caption text-end">
-                    {{item.text}}
-                  </figcaption>
-                </figure>
-              </div>
+        <div class="col-6 col-sm-4 col-md-3 bg-info text-white" id="buy">
+          <h5 class="mt-2">購買</h5>
+          <hr />
+          <div class="col-12" v-for="item in list">
+            <div role="button" v-on:click="clickLink(item.link)">
+              <figure class="figure">
+                <img :src="item.img" class="figure-img img-fluid rounded" alt="..." />
+                <figcaption class="figure-caption text-end">
+                  {{item.text}}
+                </figcaption>
+              </figure>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <ul class="marquee lay3">
-      <li>
-        EDGEWORK 邊緣工事 フリンジ要塞 ป้อมปราการริม 프린지 요새 Kraštiniai
-        įtvirtinimai
-      </li>
-      <li>
-        EDGEWORK 邊緣工事 フリンジ要塞 ป้อมปราการริม 프린지 요새 Kraštiniai
-        įtvirtinimai
-      </li>
-    </ul>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-  <script>
-    var first = true;
-    var signUp = new Vue({
-      el: "#sign-up",
-      data: {
-        list: [
-          {
-            img: "./img/s1.jpeg",
-            text: "｜進駐遊牧商店",
-            link: "https://pros.si/3hvq89",
-          },
-          {
-            img: "./img/s2.jpeg",
-            text: "｜邊緣人市集・12月場次",
-            link: "https://docs.google.com/forms/d/e/1FAIpQLScf3jY5EKVHDZEY2GMuFg-6Nt1nrypbZCZptZofXpgbo5whQw/viewform",
-          },
-          {
-            img: "./img/s3.jpeg",
-            text: "｜邊緣人市集・12月漢神巨蛋｜耶誕市集",
-            link: "https://docs.google.com/forms/d/e/1FAIpQLSfGTOzAG-Fkb2R_p0FpQFsAcDuEgrdeALyyTQUzPzmNMqvMWQ/viewform",
-          },
-          {
-            img: "./img/s4.jpeg",
-            text: "｜邊緣人市集・11月場次",
-            link: "https://docs.google.com/forms/d/e/1FAIpQLSc90o7U_SQHcVe6jJbQ26yjeS0udIPUAj2wwcC0uSOjIqNO6w/viewform",
-          },
-          {
-            img: "./img/s5.jpeg",
-            text: "｜邊緣人市集・11月衛武營【WOW世界女性藝術節市集】",
-            link: "https://docs.google.com/forms/d/e/1FAIpQLScPUyICWJIfqwUsCk-pB90kjUYOogmS3P7pPZD7xL2gZ-cjog/viewform",
-          },
-          {
-            img: "./img/s6.jpeg",
-            text: "｜邊緣人市集・11月漢神巨蛋 歐洲小鎮",
-            link: "https://docs.google.com/forms/d/e/1FAIpQLScNMNtPqvtMBm0l0IVvcwz1F7EQSw67oN5mS1ZLKgZjA35tTg/viewform",
-          },
-          {
-            img: "./img/s7.jpeg",
-            text: "｜邊緣夥伴招募",
-            link: "https://pros.si/3hvq89",
-          },
-        ],
-      },
-      methods: {
-        clickLink: function (link) {
-          console.log(link);
-          fadeOut(function () {
-            window.location.href = link;
-          });
-        },
-      },
-    });
-    var recruit = new Vue({
-      el: "#recruit",
-      data: {
-        list: [
-          {
-            img: "./img/r1.jpeg",
-            text: "｜邊緣夥伴招募",
-            link: "https://docs.google.com/forms/d/e/1FAIpQLScwGwPZ0xGgiZ95nOurvoxw5AWYsNYpTO30-MIbbvpJNrLLnQ/viewform",
-          },
-        ],
-      },
-      methods: {
-        clickLink: function (link) {
-          console.log(link);
-          fadeOut(function () {
-            window.location.href = link;
-          });
-        },
-      },
-    });
-    var buy = new Vue({
-      el: "#buy",
-      data: {
-        list: [
-          {
-            img: "./img/b1.jpeg",
-            text: "｜邊緣商品",
-            link: "https://docs.google.com/forms/d/1a1SLrtUZHdVrjczZe2C3AK8ZrJLXH6GO6LMynIPD2Zs/edit",
-          },
-        ],
-      },
-      methods: {
-        clickLink: function (link) {
-          fadeOut(function () {
-            window.location.href = link;
-          });
-        },
-      },
-    });
-    var edgework = new Vue({
-      el: "#edgework",
-      data: {
-        no: 0,
-        text: "EDGEWORK",
-        theme: "text-dark bg-white",
-      },
-      methods: {
-        moreClick: function () {},
-      },
-    });
+  </div>
+  <ul class="marquee lay3">
+    <li>
+      EDGEWORK 邊緣工事 フリンジ要塞 ป้อมปราการริม 프린지 요새 Kraštiniai
+      įtvirtinimai
+    </li>
+    <li>
+      EDGEWORK 邊緣工事 フリンジ要塞 ป้อมปราการริม 프린지 요새 Kraštiniai
+      įtvirtinimai
+    </li>
+  </ul>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+<script>
+  var first = true;
 
-    const titleClick = function (dom, cb) {
-      let no = 0;
-      let clicked = false;
-      return function (e) {
-        if (clicked) return;
-        clicked = true;
-        const text = [
-          "EDGEWORK",
-          "邊緣工事",
-          "フリンジ要塞",
-          "ป้อมปราการริม",
-          "프린지 요새",
-          "Kraštiniai įtvirtinimai",
-        ];
-
-        no = (no + 1) % text.length;
-        createCircle(e.clientY, e.clientX);
-        dom
-          .css({ transition: "0s" })
-          .animate(
-            {
-              opacity: 0,
-            },
-            0,
-            function () {
-              cb(text[no]);
-            }
-          )
-          .delay(500)
-          .animate(
-            {
-              opacity: 1,
-            },
-            500,
-            function () {
-              $(this).css({ transition: "0.5s" });
-              clicked = false;
-            }
-          );
-      };
-    };
-
-    function createCircle(y, x) {
-      const newDiv = $(document.createElement("div"))
-        .attr("class", "circle")
-        .css({
-          top: y + "px",
-          left: x + "px",
-          // backgroundColor: `rgba(${Math.random() * 255}, ${
-          //   Math.random() * 255
-          // }, ${Math.random() * 255}, 1)`,
-          backgroundColor: "aquamarine",
+  var recruit = new Vue({
+    el: "#recruit",
+    data: {
+      list: [
+        {
+          img: "./img/r1.jpeg",
+          text: "｜邊緣夥伴招募",
+          link: "https://docs.google.com/forms/d/e/1FAIpQLScwGwPZ0xGgiZ95nOurvoxw5AWYsNYpTO30-MIbbvpJNrLLnQ/viewform",
+        },
+      ],
+    },
+    methods: {
+      clickLink: function (link) {
+        console.log(link);
+        fadeOut(function () {
+          window.location.href = link;
         });
-
-      const abs = $(this).scrollTop();
-      if (abs > 10) {
-        newDiv.css({
-          position: "absolute",
-          // backgroundColor: "#b2dbcd",
-          backgroundColor: "rgba(178,219,205,.2)",
+      },
+    },
+  });
+  var buy = new Vue({
+    el: "#buy",
+    data: {
+      list: [
+        {
+          img: "./img/b1.jpeg",
+          text: "｜邊緣商品",
+          link: "https://docs.google.com/forms/d/1a1SLrtUZHdVrjczZe2C3AK8ZrJLXH6GO6LMynIPD2Zs/edit",
+        },
+      ],
+    },
+    methods: {
+      clickLink: function (link) {
+        fadeOut(function () {
+          window.location.href = link;
         });
-        $("#lay1").append(newDiv);
-      } else {
-        $("body").append(newDiv);
-      }
+      },
+    },
+  });
+  var edgework = new Vue({
+    el: "#edgework",
+    data: {
+      no: 0,
+      text: "EDGEWORK",
+      theme: "text-dark bg-white",
+    },
+    methods: {
+      moreClick: function () { },
+    },
+  });
 
-      setTimeout(() => {
-        newDiv.remove();
-      }, 500);
-    }
+  const titleClick = function (dom, cb) {
+    let no = 0;
+    let clicked = false;
+    return function (e) {
+      if (clicked) return;
+      clicked = true;
+      const text = [
+        "EDGEWORK",
+        "邊緣工事",
+        "フリンジ要塞",
+        "ป้อมปราการริม",
+        "프린지 요새",
+        "Kraštiniai įtvirtinimai",
+      ];
 
-    $("#edgework").click(
-      titleClick($("#edgework, h5.social"), function (text) {
-        $("#edgework").text(text);
-      })
-    );
-
-    function scrollEvent() {
-      console.log("scrollEvent");
-      const abs = $(this).scrollTop();
-      if (abs > 10) {
-        zoomOut();
-      } else {
-        zoomIn();
-      }
-    }
-
-    $(window).on("scroll", scrollEvent);
-
-    function fadeOut(cb) {
-      $(window).off("scroll");
-      const abs = $(this).scrollTop();
-      if (abs > 10) {
-        //$(".lay2").css({ transition: 0 });
-        zoomIn();
-      } else {
-        return;
-      }
-      $(".lay1")
+      no = (no + 1) % text.length;
+      createCircle(e.clientY, e.clientX);
+      dom
+        .css({ transition: "0s" })
+        .animate(
+          {
+            opacity: 0,
+          },
+          0,
+          function () {
+            cb(text[no]);
+          }
+        )
         .delay(500)
         .animate(
           {
-            marginLeft: "-100%",
+            opacity: 1,
           },
           500,
           function () {
-            $(".lay3").css({
-              transform: "scale(20) rotate(10deg)",
-            });
-            $("body").css({ background: "black" });
-            setTimeout(cb, 500);
-            first = false;
+            $(this).css({ transition: "0.5s" });
+            clicked = false;
           }
         );
-    }
-
-    function zoomIn() {
-      $(".lay1").css({ backgroundColor: "rgba(0,0,0,0)" });
-      $(".lay2").css({ opacity: 0 });
-      $("ul.marquee").css({ color: "rgba(0,0,0,.8)" });
-      // $("h1").css({ transform: "scale(1)" });
-      $("h1").css({ fontSize: "4rem" });
-      $("h1, h5").css({ display: "block" });
-    }
-
-    function zoomOut() {
-      $(".lay1").css({ backgroundColor: "aquamarine" });
-      $(".lay2").css({ opacity: 1 });
-      $("ul.marquee").css({ color: "rgba(0,0,0,.04)" });
-      // $("h1").css({ transform: "scale(.5)" });
-      $("h1").css({ fontSize: "1.5rem" });
-      $("h1, h5").css({ display: "inline-block" });
-    }
-
-    window.onpageshow = function () {
-      if (!first) {
-        $(".lay1").css({ marginLeft: 0 });
-        $("body").css({ background: "transparent" });
-        $(".lay3").css({
-          transform: "scale(1) rotate(10deg)",
-        });
-        zoomOut();
-        $(window).on("scroll", scrollEvent);
-      }
     };
-  </script>
+  };
+
+  function createCircle(y, x) {
+    const newDiv = $(document.createElement("div"))
+      .attr("class", "circle")
+      .css({
+        top: y + "px",
+        left: x + "px",
+        // backgroundColor: `rgba(${Math.random() * 255}, ${
+        //   Math.random() * 255
+        // }, ${Math.random() * 255}, 1)`,
+        backgroundColor: "aquamarine",
+      });
+
+    const abs = $(this).scrollTop();
+    if (abs > 10) {
+      newDiv.css({
+        position: "absolute",
+        // backgroundColor: "#b2dbcd",
+        backgroundColor: "rgba(178,219,205,.2)",
+      });
+      $("#lay1").append(newDiv);
+    } else {
+      $("body").append(newDiv);
+    }
+
+    setTimeout(() => {
+      newDiv.remove();
+    }, 500);
+  }
+
+  $("#edgework").click(
+    titleClick($("#edgework, h5.social"), function (text) {
+      $("#edgework").text(text);
+    })
+  );
+
+  function scrollEvent() {
+    console.log("scrollEvent");
+    const abs = $(this).scrollTop();
+    if (abs > 10) {
+      zoomOut();
+    } else {
+      zoomIn();
+    }
+  }
+
+  $(window).on("scroll", scrollEvent);
+
+  function fadeOut(cb) {
+    $(window).off("scroll");
+    const abs = $(this).scrollTop();
+    if (abs > 10) {
+      //$(".lay2").css({ transition: 0 });
+      zoomIn();
+    } else {
+      return;
+    }
+    $(".lay1")
+      .delay(500)
+      .animate(
+        {
+          marginLeft: "-100%",
+        },
+        500,
+        function () {
+          $(".lay3").css({
+            transform: "scale(20) rotate(10deg)",
+          });
+          $("body").css({ background: "black" });
+          setTimeout(cb, 500);
+          first = false;
+        }
+      );
+  }
+
+  function zoomIn() {
+    $(".lay1").css({ backgroundColor: "rgba(0,0,0,0)" });
+    $(".lay2").css({ opacity: 0 });
+    $("ul.marquee").css({ color: "rgba(0,0,0,.8)" });
+    // $("h1").css({ transform: "scale(1)" });
+    $("h1").css({ fontSize: "4rem" });
+    $("h1, h5").css({ display: "block" });
+  }
+
+  function zoomOut() {
+    $(".lay1").css({ backgroundColor: "aquamarine" });
+    $(".lay2").css({ opacity: 1 });
+    $("ul.marquee").css({ color: "rgba(0,0,0,.04)" });
+    // $("h1").css({ transform: "scale(.5)" });
+    $("h1").css({ fontSize: "1.5rem" });
+    $("h1, h5").css({ display: "inline-block" });
+  }
+
+  window.onpageshow = function () {
+    if (!first) {
+      $(".lay1").css({ marginLeft: 0 });
+      $("body").css({ background: "transparent" });
+      $(".lay3").css({
+        transform: "scale(1) rotate(10deg)",
+      });
+      zoomOut();
+      $(window).on("scroll", scrollEvent);
+    }
+  };
+
+  $.get("/html", function (data) {
+    console.log(data)
+    const displayList = [[], [], [], []]
+    data.list.forEach((item, i) => {
+      displayList[i % 4].push(item)
+    });
+
+    console.log('displayList', displayList)
+    var signUp = new Vue({
+      el: "#sign-up",
+      data: {
+        list: displayList
+      },
+      methods: {
+        clickLink: function (link) {
+          console.log(link);
+          window.open(link)
+          // fadeOut(function () {
+          //   window.location.href = link;
+          // });
+        },
+      },
+    });
+  });
+
+</script>
+
 </html>
