@@ -4,7 +4,6 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const app = express();
 const { Builder, Browser, By, Key, until } = require("selenium-webdriver");
-const chrome = require("selenium-webdriver/chrome");
 // respond with "hello world" when a GET request is made to the homepage
 
 app.get("/html", function (req, res, next) {
@@ -41,12 +40,13 @@ app.get("/html", function (req, res, next) {
 
 app.get("/sign", async function (req, res, next) {
   let driver = await new Builder().forBrowser(Browser.CHROME).build();
+  let body = "";
   try {
     await driver.get("https://edgework.soci.vip/");
-    // await driver.findElement(By.name("q")).sendKeys("webdriver", Key.RETURN);
+    body = await driver.findElement(By.LocatorStrategy(body));
   } finally {
     await driver.quit();
-    res.json([]);
+    res.json(body.toString());
   }
   // request(
   //   {
