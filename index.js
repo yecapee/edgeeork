@@ -41,24 +41,25 @@ app.get("/html", function (req, res, next) {
 app.get("/sign", async function (req, res, next) {
   let driver = await new Builder().forBrowser(Browser.CHROME).build();
   let dom;
+  const returnlist = [];
 
   try {
     // await driver.get("https://edgework.soci.vip/");
     await driver.get("https://edgework.soci.vip/");
     let list = await driver.findElement(By.className("list"));
     dom = new JSDOM(await list.getAttribute("innerHTML"));
-  } finally {
-    await driver.quit();
     const content = dom.window.document.getElementsByTagName("li");
-    const list = [];
+
     for (let i = 0; i < content.length; i++) {
-      list.push({
+      returnlist.push({
         text: content[i].textContent,
         img: content[i].getElementsByTagName("img")[0].getAttribute("src"),
       });
     }
+  } finally {
+    driver.quit();
     res.json({
-      list,
+      returnlist,
     });
   }
 });
