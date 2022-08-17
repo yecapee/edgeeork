@@ -38,20 +38,20 @@ app.get("/html", function (req, res, next) {
   });
 });
 
-app.get("/sign", async function (req, res, next) {
-  let driver = await new Builder().forBrowser(Browser.CHROME).build();
-  let html;
+// app.get("/sign", async function (req, res, next) {
+//   let driver = await new Builder().forBrowser(Browser.CHROME).build();
+//   let html;
 
-  try {
-    // await driver.get("https://edgework.soci.vip/");
-    await driver.get("https://edgework.soci.vip/");
-    let list = await driver.findElement(By.className("list"));
-    html = await list.getAttribute("innerHTML");
-  } finally {
-    await driver.quit();
-    res.json(html);
-  }
-});
+//   try {
+//     // await driver.get("https://edgework.soci.vip/");
+//     await driver.get("https://edgework.soci.vip/");
+//     let list = await driver.findElement(By.className("list"));
+//     html = await list.getAttribute("innerHTML");
+//   } finally {
+//     await driver.quit();
+//     res.json(html);
+//   }
+// });
 
 app.use("/", express.static("public"));
 
