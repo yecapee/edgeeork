@@ -3,8 +3,6 @@ const request = require("request");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const app = express();
-const { Builder, Browser, By, Key, until } = require("selenium-webdriver");
-// respond with "hello world" when a GET request is made to the homepage
 
 app.get("/html", function (req, res, next) {
   request("https://greatfon.com/v/edge_work", function (error, response, body) {
@@ -36,48 +34,6 @@ app.get("/html", function (req, res, next) {
       });
     }
   });
-});
-
-app.get("/sign", async function (req, res, next) {
-  let driver = await new Builder().forBrowser(Browser.CHROME).build();
-  let body = "";
-  try {
-    await driver.get("https://edgework.soci.vip/");
-    body = await driver.findElement(By.LocatorStrategy("body"));
-  } finally {
-    await driver.quit();
-    res.json(body.toString());
-  }
-  // request(
-  //   {
-  //     url: "https://edgework.soci.vip/",
-  //     headers: {
-  //       host: "https://edgework.soci.vip/",
-  //       ...req,
-  //     },
-  //   },
-  //   function (error, response, body) {
-  //     if (body) {
-  //       const dom = new JSDOM(body.toString());
-  //       const contentText = dom.window.document.getElementsByTagName("li");
-
-  //       const contentTexts = [];
-  //       for (let i = 0; i < contentText.length; i++) {
-  //         contentTexts.push({
-  //           text: contentText[i].contentText,
-  //           img: contentText[i].getElementsByTagName("img").getAttribute("src"),
-  //         });
-  //       }
-
-  //       console.log("dom", body.toString());
-  //       res.json(contentTexts);
-  //     } else {
-  //       res.json({
-  //         list: [],
-  //       });
-  //     }
-  //   }
-  // );
 });
 
 app.use("/", express.static("public"));
