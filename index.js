@@ -52,8 +52,8 @@ app.get("/sign", async function (req, res, next) {
 
     for (let i = 0; i < content.length; i++) {
       returnlist.push({
-        text: content[i].textContent,
-        img: content[i].getElementsByTagName("img")[0].getAttribute("src"),
+        text: content[i]?.textContent,
+        img: content[i]?.getElementsByTagName("img")[0]?.getAttribute("src"),
       });
     }
   } finally {
