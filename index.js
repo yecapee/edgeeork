@@ -38,31 +38,31 @@ app.get("/html", function (req, res, next) {
   });
 });
 
-app.get("/sign", async function (req, res, next) {
-  let driver = await new Builder().forBrowser(Browser.CHROME).build();
-  let dom;
-  const returnlist = [];
+// app.get("/sign", async function (req, res, next) {
+//   let driver = await new Builder().forBrowser(Browser.CHROME).build();
+//   let dom;
+//   const returnlist = [];
 
-  try {
-    // await driver.get("https://edgework.soci.vip/");
-    await driver.get("https://edgework.soci.vip/");
-    let list = await driver.findElement(By.className("list"));
-    dom = new JSDOM(await list.getAttribute("innerHTML"));
-    const content = dom.window.document.getElementsByTagName("li");
+//   try {
+//     // await driver.get("https://edgework.soci.vip/");
+//     await driver.get("https://edgework.soci.vip/");
+//     let list = await driver.findElement(By.className("list"));
+//     dom = new JSDOM(await list.getAttribute("innerHTML"));
+//     const content = dom.window.document.getElementsByTagName("li");
 
-    for (let i = 0; i < content.length; i++) {
-      returnlist.push({
-        text: content[i]?.textContent,
-        img: content[i]?.getElementsByTagName("img")[0]?.getAttribute("src"),
-      });
-    }
-  } finally {
-    driver.quit();
-    res.json({
-      returnlist,
-    });
-  }
-});
+//     for (let i = 0; i < content.length; i++) {
+//       returnlist.push({
+//         text: content[i]?.textContent,
+//         img: content[i]?.getElementsByTagName("img")[0]?.getAttribute("src"),
+//       });
+//     }
+//   } finally {
+//     driver.quit();
+//     res.json({
+//       returnlist,
+//     });
+//   }
+// });
 
 app.use("/", express.static("public"));
 
