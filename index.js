@@ -43,7 +43,7 @@ app.get("/sign", async function (req, res, next) {
   let body = "";
   try {
     await driver.get("https://edgework.soci.vip/");
-    body = await driver.findElement(By.LocatorStrategy(body));
+    body = await driver.findElement(By.LocatorStrategy("body"));
   } finally {
     await driver.quit();
     res.json(body.toString());
