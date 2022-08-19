@@ -185,6 +185,15 @@
       opacity: 1;
       height: 20px;
     }
+
+    .circle {
+      transition: .3s;
+      border-radius: 50%;
+    }
+
+    .circle:hover {
+      border-radius: 0%;
+    }
   </style>
 </head>
 
@@ -207,7 +216,7 @@
         <div class="col-12 col-sm-6 col-md-3" v-for="item in list">
           <div role="button" v-on:click="clickLink(item.url)">
             <figure class="sign p-3">
-              <img :src="item.imageUrl" class="figure-img img-fluid rounded rounded-circle" alt="..." />
+              <img :src="item.imageUrl" class="figure-img img-fluid circle" alt="..." />
               <div class="figure-caption text-center text-break title">{{item.title}}</div>
               <div class="figure-caption text-center text-break info">{{item.subtitle || item.title}}</div>
             </figure>
