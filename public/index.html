@@ -123,6 +123,15 @@
       z-index: 999;
     }
 
+    div.sign {
+      /* position: relative; */
+    }
+
+    div.sign img {
+      /* position: absolute;
+      height: 100%; */
+    }
+
     @keyframes circle {
       0% {
         opacity: 1;
@@ -163,9 +172,22 @@
   </div>
   <div id="container" class="container">
     <div class="lay2">
-      <h4 class="mt-5">最新動態</h4>
+      <h4 class="mt-5 text-center text-sm-start">報名</h4>
+      <div class="row pt-3 mx-n1" id="sign">
+        <div class="col-12 col-sm-6 col-md-3" v-for="item in list">
+          <div role="button" v-on:click="clickLink(item.url)">
+            <div class="sign p-3">
+              <img :src="item.imageUrl" class="figure-img img-fluid rounded rounded-circle" alt="..." />
+              <div class="figure-caption text-center text-break" v-html="item.title" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container" class="container">
+      <h4 class="mt-5 text-center text-sm-start">最新動態</h4>
       <!-- <hr class="lay2" /> -->
-      <div class="row pt-3 mx-n1" id="sign-up">
+      <div class="row pt-3 mx-n1" id="event">
         <div class="col-12 col-sm-6 col-md-3">
           <div role="button" v-on:click="clickLink('https://www.instagram.com/edge_work/')">
             <figure class="figure border p-3" v-for="item in list[0]">
@@ -200,7 +222,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-6 col-sm-4 col-md-3 bg-warning text-white" id="recruit">
           <h5 class="mt-2">徵人</h5>
           <hr />
@@ -229,7 +251,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
   <ul class="marquee lay3">
@@ -449,17 +471,33 @@
   };
 
   $.get("/html", function (data) {
-    console.log(data)
     const displayList = [[], [], [], []]
     data.list.forEach((item, i) => {
       displayList[i % 4].push(item)
     });
 
-    console.log('displayList', displayList)
-    var signUp = new Vue({
-      el: "#sign-up",
+    var event = new Vue({
+      el: "#event",
       data: {
         list: displayList
+      },
+      methods: {
+        clickLink: function (link) {
+          console.log(link);
+          window.open(link)
+          // fadeOut(function () {
+          //   window.location.href = link;
+          // });
+        },
+      },
+    });
+  });
+
+  $.get("/sign", function (data) {
+    var signUp = new Vue({
+      el: "#sign",
+      data: {
+        list: data.returnlist?.filter(item => item.title !== 'FB')
       },
       methods: {
         clickLink: function (link) {
