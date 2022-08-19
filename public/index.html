@@ -11,6 +11,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"
+    integrity="sha512-CEiA+78TpP9KAIPzqBvxUv8hy41jyI3f2uHi7DGp/Y/Ka973qgSdybNegWFciqh6GrN2UePx2KkflnQUbUhNIA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
@@ -157,6 +160,31 @@
     .figure {
       width: 100%
     }
+
+    .banner {
+      background-color: #7fffd47d;
+    }
+
+    .sign {
+      position: relative;
+    }
+
+    .info,
+    .title {
+      transition: .3s;
+    }
+
+    .sign .info,
+    .sign:hover .title {
+      opacity: 0;
+      height: 0px;
+    }
+
+    .sign:hover .info,
+    .sign .title {
+      opacity: 1;
+      height: 20px;
+    }
   </style>
 </head>
 
@@ -170,27 +198,35 @@
       </h5>
     </div>
   </div>
-  <div id="container" class="container">
+
+
+  <div class="container">
     <div class="lay2">
       <h4 class="mt-5 text-center text-sm-start">報名</h4>
       <div class="row pt-3 mx-n1" id="sign">
         <div class="col-12 col-sm-6 col-md-3" v-for="item in list">
           <div role="button" v-on:click="clickLink(item.url)">
-            <div class="sign p-3">
+            <figure class="sign p-3">
               <img :src="item.imageUrl" class="figure-img img-fluid rounded rounded-circle" alt="..." />
-              <div class="figure-caption text-center text-break" v-html="item.title" />
-            </div>
+              <div class="figure-caption text-center text-break title">{{item.title}}</div>
+              <div class="figure-caption text-center text-break info">{{item.subtitle || item.title}}</div>
+            </figure>
+
           </div>
         </div>
       </div>
     </div>
+  </div>
+
+
+  <div class="banner pt-3">
     <div id="container" class="container">
-      <h4 class="mt-5 text-center text-sm-start">最新動態</h4>
+      <h4 id="eventTitle" class="mt-5 text-center text-sm-start">最新動態</h4>
       <!-- <hr class="lay2" /> -->
       <div class="row pt-3 mx-n1" id="event">
         <div class="col-12 col-sm-6 col-md-3">
           <div role="button" v-on:click="clickLink('https://www.instagram.com/edge_work/')">
-            <figure class="figure border p-3" v-for="item in list[0]">
+            <figure class="figure p-3" v-for="item in list[0]">
               <img :src="item.img" class="figure-img img-fluid rounded" alt="..." />
               <figcaption class="figure-caption text-start text-break" v-html="item.text" />
             </figure>
@@ -198,7 +234,7 @@
         </div>
         <div class="col-12 col-sm-6 col-md-3">
           <div role="button" v-on:click="clickLink('https://www.instagram.com/edge_work/')">
-            <figure class="figure border p-3" v-for="item in list[1]">
+            <figure class="figure p-3" v-for="item in list[1]">
               <img :src="item.img" class="figure-img img-fluid rounded" alt="..." />
               <figcaption class="figure-caption text-start text-break" v-html="item.text" />
             </figure>
@@ -206,7 +242,7 @@
         </div>
         <div class="col-12 col-sm-6 col-md-3">
           <div role="button" v-on:click="clickLink('https://www.instagram.com/edge_work/')">
-            <figure class="figure border p-3" v-for="item in list[2]">
+            <figure class="figure p-3" v-for="item in list[2]">
               <img :src="item.img" class="figure-img img-fluid rounded" alt="..." />
               <figcaption class="figure-caption text-start text-break" v-html="item.text" />
             </figure>
@@ -214,46 +250,19 @@
         </div>
         <div class="col-12 col-sm-6 col-md-3">
           <div role="button" v-on:click="clickLink('https://www.instagram.com/edge_work/')">
-            <figure class="figure border p-3" v-for="item in list[3]">
+            <figure class="figure p-3" v-for="item in list[3]">
               <img :src="item.img" class="figure-img img-fluid rounded" alt="..." />
               <figcaption class="figure-caption text-start text-break" v-html="item.text" />
             </figure>
           </div>
         </div>
       </div>
-
-      <!-- <div class="row">
-        <div class="col-6 col-sm-4 col-md-3 bg-warning text-white" id="recruit">
-          <h5 class="mt-2">徵人</h5>
-          <hr />
-          <div class="col-12" v-for="item in list">
-            <div role="button" v-on:click="clickLink(item.link)">
-              <figure class="figure">
-                <img :src="item.img" class="figure-img img-fluid rounded" alt="..." />
-                <figcaption class="figure-caption text-end">
-                  {{item.text}}
-                </figcaption>
-              </figure>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-sm-4 col-md-3 bg-info text-white" id="buy">
-          <h5 class="mt-2">購買</h5>
-          <hr />
-          <div class="col-12" v-for="item in list">
-            <div role="button" v-on:click="clickLink(item.link)">
-              <figure class="figure">
-                <img :src="item.img" class="figure-img img-fluid rounded" alt="..." />
-                <figcaption class="figure-caption text-end">
-                  {{item.text}}
-                </figcaption>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
   </div>
+
+
+
+
   <ul class="marquee lay3">
     <li>
       EDGEWORK 邊緣工事 フリンジ要塞 ป้อมปราการริม 프린지 요새 Kraštiniai
@@ -270,7 +279,6 @@
 </body>
 <script>
   var first = true;
-
   var recruit = new Vue({
     el: "#recruit",
     data: {
