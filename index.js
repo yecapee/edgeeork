@@ -5,8 +5,8 @@ const { JSDOM } = jsdom;
 const app = express();
 const { Builder, Browser, By, Key, until } = require("selenium-webdriver");
 // respond with "hello world" when a GET request is made to the homepage
-
-app.get("/html", function (req, res, next) {
+let returnHtmlJson;
+function getHtml() {
   request("https://greatfon.com/v/edge_work", function (error, response, body) {
     if (body) {
       const dom = new JSDOM(body.toString());
@@ -24,18 +24,20 @@ app.get("/html", function (req, res, next) {
         contentMedias.push(contentMedia[i].getAttribute("src"));
       }
 
-      res.json({
+      returnHtmlJson = {
         list: contentTexts.map((item, i) => ({
           img: contentMedias[i],
           text: item,
         })),
-      });
-    } else {
-      res.json({
-        list: [],
-      });
+      };
     }
   });
+}
+getHtml();
+setInterval(getHtml, 1000 * 60 * 60 * 3);
+
+app.get("/html", function (req, res, next) {
+  res.json(returnHtmlJson);
 });
 
 let returnlist;
