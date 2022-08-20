@@ -128,15 +128,6 @@
       z-index: 999;
     }
 
-    div.sign {
-      /* position: relative; */
-    }
-
-    div.sign img {
-      /* position: absolute;
-      height: 100%; */
-    }
-
     @keyframes circle {
       0% {
         opacity: 1;
@@ -222,7 +213,7 @@
         <div class="col-12 col-sm-6 col-lg-3" v-for="item in list">
           <div role="button" v-on:click="clickLink(item.url)">
             <figure class="sign p-3">
-              <img :src="item.imageUrl" class="figure-img img-fluid circle" alt="..." />
+              <img :src="item.imageUrl" class="figure-img img-fluid circle" loading="lazy" alt="{{item.title}}" />
               <div class="figure-caption text-center text-break title">{{item.title}}</div>
               <div class="figure-caption text-center text-break info">{{item.subtitle || item.title}}</div>
             </figure>
@@ -242,7 +233,7 @@
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="border-end" role="button" v-on:click="clickLink('https://www.instagram.com/edge_work/')">
             <figure class="figure p-3" v-for="item in list[0]">
-              <img :src="item.img" class="figure-img img-fluid rounded" alt="..." />
+              <img :src="item.img" class="figure-img img-fluid rounded" loading="lazy" alt="..." />
               <figcaption class="figure-caption text-start text-break" v-html="item.text"></figcaption>
               <h4 class="text-center text-black-50 pt-4"><i class="bi bi-x-lg"></i></h4>
             </figure>
@@ -251,7 +242,7 @@
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="border-end" role="button" v-on:click="clickLink('https://www.instagram.com/edge_work/')">
             <figure class="figure p-3" v-for="item in list[1]">
-              <img :src="item.img" class="figure-img img-fluid rounded" alt="..." />
+              <img :src="item.img" class="figure-img img-fluid rounded" loading="lazy" alt="..." />
               <figcaption class="figure-caption text-start text-break" v-html="item.text"></figcaption>
               <h4 class="text-center text-black-50 pt-4"><i class="bi bi-x-lg"></i></h4>
             </figure>
@@ -260,7 +251,7 @@
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="border-end" role="button" v-on:click="clickLink('https://www.instagram.com/edge_work/')">
             <figure class="figure p-3" v-for="item in list[2]">
-              <img :src="item.img" class="figure-img img-fluid rounded" alt="..." />
+              <img :src="item.img" class="figure-img img-fluid rounded" loading="lazy" alt="..." />
               <figcaption class="figure-caption text-start text-break" v-html="item.text"></figcaption>
               <h4 class="text-center text-black-50 pt-4"><i class="bi bi-x-lg"></i></h4>
             </figure>
@@ -269,7 +260,7 @@
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="border-end" role="button" v-on:click="clickLink('https://www.instagram.com/edge_work/')">
             <figure class="figure p-3" v-for="item in list[3]">
-              <img :src="item.img" class="figure-img img-fluid rounded" alt="..." />
+              <img :src="item.img" class="figure-img img-fluid rounded" loading="lazy" alt="..." />
               <figcaption class="figure-caption text-start text-break" v-html="item.text"></figcaption>
               <h4 class="text-center text-black-50 pt-4"><i class="bi bi-x-lg"></i></h4>
             </figure>
@@ -303,48 +294,7 @@
     crossorigin="anonymous"></script>
 </body>
 <script>
-  var first = true;
-  var recruit = new Vue({
-    el: "#recruit",
-    data: {
-      list: [
-        {
-          img: "./img/r1.jpeg",
-          text: "｜邊緣夥伴招募",
-          link: "https://docs.google.com/forms/d/e/1FAIpQLScwGwPZ0xGgiZ95nOurvoxw5AWYsNYpTO30-MIbbvpJNrLLnQ/viewform",
-        },
-      ],
-    },
-    methods: {
-      clickLink: function (link) {
-        console.log(link);
-        window.open(link)
-        // fadeOut(function () {
-        //   window.location.href = link;
-        // });
-      },
-    },
-  });
-  var buy = new Vue({
-    el: "#buy",
-    data: {
-      list: [
-        {
-          img: "./img/b1.jpeg",
-          text: "｜邊緣商品",
-          link: "https://docs.google.com/forms/d/1a1SLrtUZHdVrjczZe2C3AK8ZrJLXH6GO6LMynIPD2Zs/edit",
-        },
-      ],
-    },
-    methods: {
-      clickLink: function (link) {
-        window.open(link)
-        // fadeOut(function () {
-        //   window.location.href = link;
-        // });
-      },
-    },
-  });
+
   var edgework = new Vue({
     el: "#edgework",
     data: {
@@ -435,7 +385,6 @@
   );
 
   function scrollEvent() {
-    console.log("scrollEvent");
     const abs = $(this).scrollTop();
     if (abs > 10) {
       zoomOut();
@@ -445,33 +394,6 @@
   }
 
   $(window).on("scroll", scrollEvent);
-
-  function fadeOut(cb) {
-    $(window).off("scroll");
-    const abs = $(this).scrollTop();
-    if (abs > 10) {
-      //$(".lay2").css({ transition: 0 });
-      zoomIn();
-    } else {
-      return;
-    }
-    $(".lay1")
-      .delay(500)
-      .animate(
-        {
-          marginLeft: "-100%",
-        },
-        500,
-        function () {
-          $(".lay3").css({
-            transform: "scale(20) rotate(10deg)",
-          });
-          $("body").css({ background: "black" });
-          setTimeout(cb, 500);
-          first = false;
-        }
-      );
-  }
 
   function zoomIn() {
     $(".lay1").css({ backgroundColor: "rgba(0,0,0,0)" });
@@ -491,18 +413,6 @@
     $("h1, h5").css({ display: "inline-block" });
   }
 
-  window.onpageshow = function () {
-    if (!first) {
-      $(".lay1").css({ marginLeft: 0 });
-      $("body").css({ background: "transparent" });
-      $(".lay3").css({
-        transform: "scale(1) rotate(10deg)",
-      });
-      zoomOut();
-      $(window).on("scroll", scrollEvent);
-    }
-  };
-
   $.get("/html", function (data) {
     const displayList = [[], [], [], []]
     data.list.forEach((item, i) => {
@@ -516,11 +426,7 @@
       },
       methods: {
         clickLink: function (link) {
-          console.log(link);
           window.open(link)
-          // fadeOut(function () {
-          //   window.location.href = link;
-          // });
         },
       },
     });
@@ -534,11 +440,7 @@
       },
       methods: {
         clickLink: function (link) {
-          console.log(link);
           window.open(link)
-          // fadeOut(function () {
-          //   window.location.href = link;
-          // });
         },
       },
     });
