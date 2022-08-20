@@ -191,10 +191,43 @@
     footer {
       font-size: 12px;
     }
+
+    .mask {
+      z-index: 999;
+      width: 100%;
+      height: calc(100vh - 116px);
+      position: fixed;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      transition: .3s;
+    }
+
+    .down {
+      animation-iteration-count: infinite;
+      animation-name: ani;
+      animation-duration: 1s;
+    }
+
+    @keyframes ani {
+      from {
+        transform: translateY(-20px)
+      }
+
+      to {
+        transform: translateY(0px)
+      }
+    }
   </style>
+
+
 </head>
 
 <body>
+  <div class="mask">
+    <i class="bi bi-arrow-down down"></i>
+  </div>
   <div id="lay1" class="lay1">
     <div class="container">
       <h1 id="edgework" role="button">EDGEWORK</h1>
@@ -273,9 +306,6 @@
     </div>
   </div>
 
-
-
-
   <ul class="marquee lay3">
     <li>
       EDGEWORK 邊緣工事 フリンジ要塞 ป้อมปราการริม 프린지 요새 Kraštiniai
@@ -286,6 +316,7 @@
       įtvirtinimai
     </li>
   </ul>
+
   <footer class="text-center py-5 px-3">
     <p>EDGEWORK <i class="bi bi-x-lg"></i> <a href="https://yecapee.github.io/spacewar/dist/">YECAPEE</a></p>
     <p>Copyright © 2022 邊緣工事整合行銷. All Rights Reserved.</p>
@@ -357,9 +388,6 @@
       .css({
         top: y + "px",
         left: x + "px",
-        // backgroundColor: `rgba(${Math.random() * 255}, ${
-        //   Math.random() * 255
-        // }, ${Math.random() * 255}, 1)`,
         backgroundColor: "aquamarine",
       });
 
@@ -367,7 +395,6 @@
     if (abs > 10) {
       newDiv.css({
         position: "absolute",
-        // backgroundColor: "#b2dbcd",
         backgroundColor: "rgba(178,219,205,.2)",
       });
       $("#lay1").append(newDiv);
@@ -390,8 +417,10 @@
     const abs = $(this).scrollTop();
     if (abs > 10) {
       zoomOut();
+      $('.mask').css({ zIndex: -1, opacity: 0 })
     } else {
       zoomIn();
+      $('.mask').css({ zIndex: 999, opacity: 1 })
     }
   }
 
@@ -401,7 +430,6 @@
     $(".lay1").css({ backgroundColor: "rgba(0,0,0,0)" });
     $(".lay2").css({ opacity: 0 });
     $("ul.marquee").css({ color: "rgba(0,0,0,.8)" });
-    // $("h1").css({ transform: "scale(1)" });
     $("h1").css({ fontSize: "4rem" });
     $("h1, h5").css({ display: "block" });
   }
@@ -410,7 +438,6 @@
     $(".lay1").css({ backgroundColor: "aquamarine" });
     $(".lay2").css({ opacity: 1 });
     $("ul.marquee").css({ color: "rgba(0,0,0,.04)" });
-    // $("h1").css({ transform: "scale(.5)" });
     $("h1").css({ fontSize: "1.5rem" });
     $("h1, h5").css({ display: "inline-block" });
   }
