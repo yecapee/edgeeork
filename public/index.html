@@ -227,7 +227,7 @@
 
 <body>
   <div class="mask">
-    <i class="bi bi-arrow-down down"></i>
+    <i id="down" class="bi bi-arrow-down down"></i>
   </div>
   <div id="lay1" class="lay1">
     <div class="container">
@@ -413,6 +413,10 @@
       $("#edgework").text(text);
     })
   );
+
+  $("#down").click(function () {
+    $('html, body').animate({ scrollTop: 100 }, 'fast');
+  })
 
   function scrollEvent() {
     const abs = $(this).scrollTop();
