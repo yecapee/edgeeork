@@ -24,12 +24,14 @@ function getHtml() {
         contentMedias.push(contentMedia[i].getAttribute("src"));
       }
 
-      returnHtmlJson = {
-        list: contentTexts.map((item, i) => ({
-          img: contentMedias[i],
-          text: item,
-        })),
-      };
+      if (contentTexts.length > 0) {
+        returnHtmlJson = {
+          list: contentTexts.map((item, i) => ({
+            img: contentMedias[i],
+            text: item,
+          })),
+        };
+      }
     }
   });
 }
