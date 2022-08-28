@@ -31,6 +31,8 @@ function getHtml() {
             text: item,
           })),
         };
+      } else {
+        setTimeout(getHtml, 1000 * 60 * 3);
       }
     }
   });

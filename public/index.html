@@ -261,11 +261,11 @@
   </div>
 
 
-  <div class="banner pt-3">
+  <div class="banner pt-3" id="event" v-if="hasData">
     <div id="container" class="container">
       <h4 id="eventTitle" class="mt-5 text-start text-sm-start">#$@^#)*&^最近煩惱這些事</h4>
       <!-- <hr class="lay2" /> -->
-      <div class="row pt-3 mx-n1" id="event">
+      <div class="row pt-3 mx-n1">
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="border-end" role="button" v-on:click="clickLink('https://www.instagram.com/edge_work/')">
             <figure class="figure p-3" v-for="item in list[0]">
@@ -447,14 +447,19 @@
 
   $.get("/html", function (data) {
     const displayList = [[], [], [], []]
+    let hasData = false;
     data.list.forEach((item, i) => {
       displayList[i % 4].push(item)
     });
+    if (data.list.length > 0) {
+      hasData = true
+    }
 
     var event = new Vue({
       el: "#event",
       data: {
-        list: displayList
+        list: displayList,
+        hasData,
       },
       methods: {
         clickLink: function (link) {
