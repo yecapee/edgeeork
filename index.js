@@ -114,7 +114,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(
   cors({
-    origin: "https://edgework-events.herokuapp.com/",
+    origin: "https://edgework-events.herokuapp.com",
   })
 );
 // VAPID公鑰和私鑰
