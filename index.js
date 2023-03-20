@@ -144,30 +144,33 @@ app.post("/subscribe", (req, res) => {
 
 // 推送接口
 app.post("/push", (req, res) => {
-  // 推送消息內容
-  const payload = JSON.stringify({
-    title: "Push Notification",
-    message: "This is a push notification.",
-  });
-  // 推送選項
-  const options = {
-    TTL: 60,
-  };
-  // 遍歷訂閱集合進行推送
-  Promise.all(
-    subscriptions.map((subscription) =>
-      webpush.sendNotification(subscription, payload, options)
+  try {
+    const _payload = req.body.payload;
+    // 推送消息內容
+    const payload = JSON.stringify(_payload);
+    // 推送選項
+    const options = {
+      TTL: 60,
+    };
+    // 遍歷訂閱集合進行推送
+    Promise.all(
+      subscriptions.map((subscription) =>
+        webpush.sendNotification(subscription, payload, options)
+      )
     )
-  )
-    .then(() => {
-      // 返回成功響應
-      res.status(200).json({});
-    })
-    .catch((error) => {
-      console.error(error);
-      // 返回錯誤響應
-      res.status(500).json({});
-    });
+      .then(() => {
+        // 返回成功響應
+        res.status(200).json({});
+      })
+      .catch((error) => {
+        console.error(error);
+        // 返回錯誤響應
+        res.status(500).json({});
+      });
+  } catch (e) {
+    res.status(500).json({});
+  }
 });
+
 
 app.listen(process.env.PORT || 3000);
