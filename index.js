@@ -6,6 +6,7 @@ const { JSDOM } = jsdom;
 const webpush = require("web-push");
 const bodyParser = require("body-parser");
 const path = require("path");
+const cors = require("cors");
 
 const app = express();
 const { Builder, Browser, By, Key, until } = require("selenium-webdriver");
@@ -110,7 +111,12 @@ app.use("/", express.static("public"));
 //--------------web push
 
 app.use(bodyParser.json());
-
+app.use(cors());
+app.use(
+  cors({
+    origin: "https://edgework-events.herokuapp.com/",
+  })
+);
 // VAPID公鑰和私鑰
 const publicVapidKey =
   "BBECNCswyLSWrb5NKg_BU8Qz_Wm5luZsUJ_d91Dxnde7fyJysLZs_kyiTcF73HGEvQ1ZRUbmaD5iO2klLfsThuY";
@@ -163,6 +169,5 @@ app.post("/push", (req, res) => {
       res.status(500).json({});
     });
 });
-
 
 app.listen(process.env.PORT || 3000);
