@@ -2,6 +2,11 @@ const express = require("express");
 const request = require("request");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
+
+const webpush = require("web-push");
+const bodyParser = require("body-parser");
+const path = require("path");
+
 const app = express();
 const { Builder, Browser, By, Key, until } = require("selenium-webdriver");
 // respond with "hello world" when a GET request is made to the homepage
@@ -101,5 +106,63 @@ app.get("/sign", async function (req, res, next) {
 });
 
 app.use("/", express.static("public"));
+
+//--------------web push
+
+app.use(bodyParser.json());
+
+// VAPID公鑰和私鑰
+const publicVapidKey =
+  "BBECNCswyLSWrb5NKg_BU8Qz_Wm5luZsUJ_d91Dxnde7fyJysLZs_kyiTcF73HGEvQ1ZRUbmaD5iO2klLfsThuY";
+const privateVapidKey = "TBDTYnphjzyzQKUfBWeop8D0AyvRa9RNjcgada9KXh4";
+
+// 設置VAPID認證
+webpush.setVapidDetails(
+  "mailto:yecapee@gmail.com",
+  publicVapidKey,
+  privateVapidKey
+);
+
+// 訂閱集合
+const subscriptions = [];
+
+// 訂閱接口
+app.post("/subscribe", (req, res) => {
+  // 獲取客戶端訂閱對象
+  const subscription = req.body;
+  // 將訂閱對象存儲到訂閱集合中
+  subscriptions.push(subscription);
+  // 返回成功響應
+  res.status(201).json({});
+});
+
+// 推送接口
+app.post("/push", (req, res) => {
+  // 推送消息內容
+  const payload = JSON.stringify({
+    title: "Push Notification",
+    message: "This is a push notification.",
+  });
+  // 推送選項
+  const options = {
+    TTL: 60,
+  };
+  // 遍歷訂閱集合進行推送
+  Promise.all(
+    subscriptions.map((subscription) =>
+      webpush.sendNotification(subscription, payload, options)
+    )
+  )
+    .then(() => {
+      // 返回成功響應
+      res.status(200).json({});
+    })
+    .catch((error) => {
+      console.error(error);
+      // 返回錯誤響應
+      res.status(500).json({});
+    });
+});
+
 
 app.listen(process.env.PORT || 3000);
